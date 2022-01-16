@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: todo-client-deploy
+  labels:
+    name: todo-client
+    app: todo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: todo-client-pod
+      app: todo
+  template:
+    metadata:
+      name: todo-client-pod
+      labels:
+        name: todo-client-pod
+        app: todo
+    spec:
+      containers:
+        - name: todo-app-client
+          image: 053232/todo-app-web:v2
+          ports:
+            - containerPort: 80

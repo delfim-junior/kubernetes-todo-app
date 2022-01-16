@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-api-deployment
+  labels:
+    name: todo-api
+    app: todo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: todo-api-pod
+      app: todo
+  template:
+    metadata:
+      name: todo-api-pod
+      labels:
+        name: todo-api-pod
+        app: todo
+    spec:
+      containers:
+        - name: todo-web-api
+          image: 053232/todo-api
+          ports:
+            - containerPort: 3003
+
+
